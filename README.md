@@ -15,7 +15,7 @@
 
 ### Association
 - has_many : items
-- has_many : item_records
+- has_many : item_record
 
 ## items テーブル
 
@@ -61,7 +61,7 @@
 
 
 ### Association
-- belongs_to :item_records
+- belongs_to :item_record
 
 
 
