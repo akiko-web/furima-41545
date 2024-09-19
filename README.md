@@ -15,7 +15,7 @@
 
 ### Association
 - has_many : items
-- has_many : items_records
+- has_many : item_records
 
 ## items テーブル
 
@@ -32,10 +32,10 @@
 | user               | references | null: false, foreign_key: true | 
 
 ### Association
-- has_one :items_record
+- has_one :item_record
 - belongs_to :user
 
-## items_records テーブル
+## item_records テーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
@@ -61,7 +61,7 @@
 
 
 ### Association
-- belongs_to :items_record
+- belongs_to :item_records
 
 
 
