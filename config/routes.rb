@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'items#index'
+  get 'articles/index'
+  get 'articles/new'
+  root to: 'articles#index'
+  resources :articles
 end
