@@ -23,13 +23,13 @@
 | ------------------ | ------ | ----------- |
 | item_name          | string | null: false |
 | description        | text   | null: false |
-| category           | string | null: false |
-| condition          | string | null: false |
-| shipping_fee       | string | null: false |
-| region             | string | null: false |
-| delivery_time      | string | null: false |
+| category_id        | integer | null: false |
+| condition_id       | integer | null: false |
+| shipping_fee_id    | integer | null: false |
+| region_id          | integer | null: false |
+| delivery_time_id   | integer | null: false |
 | price              | integer | null: false |
-| user   | references | null: false, foreign_key: true | 
+| user               | references | null: false, foreign_key: true | 
 
 ### Association
 - has_one :items_record
@@ -52,10 +52,10 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | postal_code        | 	string | null: false |
-| prefecture         |	string  | null: false |
+| region_id          | integer | null: false |
 | city               | string | null: false |
-| address_number     | string| null: false |
-| building_name      | string | null: false |
+| address_number     | string | null: false |
+| building_name      | string | |
 | phone_number       | string | null: false |
 | items_record   | references | null: false, foreign_key: true |
 
