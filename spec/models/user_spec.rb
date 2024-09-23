@@ -37,6 +37,30 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Last name kana can't be blank")
       end
 
+      it 'first_nameが全角日本語でないと保存できないこと' do
+        @user.first_name = 'suzuki'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name is invalid. Input full-width characters.')
+      end
+
+      it 'last_nameが全角日本語でないと保存できないこと' do
+        @user.last_name = 'suzuki'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name is invalid. Input full-width characters.')
+      end
+
+      it 'first_name_kanaが全角カタカナでないと保存できないこと' do
+        @user.first_name_kana = 'すずき'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name kana is invalid. Input full-width katakana characters.')
+      end
+
+      it 'last_name_kanaが全角カタカナでないと保存できないこと' do
+        @user.last_name_kana = 'すずき'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name kana is invalid. Input full-width katakana characters.')
+      end
+
       it 'nicknameが空だと保存できないこと' do
         @user.nickname = ''
         @user.valid?
@@ -97,6 +121,13 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
       end
+
+      it 'last_name_kanaが全角カタカナでないと保存できないこと' do
+        @user.last_name_kana = 'すずき'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name kana is invalid. Input full-width katakana characters.')
+      end
+      
     end
   end
 end
