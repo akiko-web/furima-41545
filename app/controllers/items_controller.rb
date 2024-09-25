@@ -14,6 +14,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def index
+    @items = Item.all.order(created_at: :desc)  # 全ての商品を作成日が新しい順に取得
+  end
+
   private
 
   def item_params
