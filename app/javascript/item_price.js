@@ -1,5 +1,4 @@
 const price = () => {
-  console.log("OK");
 
   const priceInput = document.getElementById("item-price");
   if (priceInput) {  // priceInputが存在する場合のみ、イベントを追加

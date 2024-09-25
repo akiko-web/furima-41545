@@ -85,6 +85,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition を選択してください")
       end
+
+      it 'userが紐づいていないと出品できない' do
+        @item.user = nil  # userが紐づいていない状態を作成
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")  # エラーメッセージを確認
+      end
     end
   end
 end
