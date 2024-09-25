@@ -1,5 +1,23 @@
 class ItemsController < ApplicationController
-  def index
-    # ここで必要に応じてデータを取得することも可能
+  before_action :authenticate_user!, only: [:new, :create]
+
+  def new
+    @item = Item.new
+  end
+
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def item_params
+    # :image を許可することで、画像も一緒に保存できるようにします
+    params.require(:item).permit(:item_name, :description, :category_id, :condition_id, :shipping_fee_id, :region_id, :delivery_time_id, :price, :image).merge(user_id: current_user.id) # 他の属性も含めて許可
   end
 end

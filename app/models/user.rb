@@ -16,4 +16,5 @@ validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と�
 validates :first_name, :last_name, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: "is invalid. Input full-width characters."}
  # カタカナのみ許可する
     validates :first_name_kana, :last_name_kana, format: {with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters."}
-end
+    has_many :items
+  end
