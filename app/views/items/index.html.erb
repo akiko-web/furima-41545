@@ -178,9 +178,63 @@
       </li>
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+      
     </ul>
   </div>
   <%# /商品一覧 %>
+  <div class="contents row">
+  <% if @items.any? %>  <!-- 商品がある場合 -->
+    <% @items.each do |item| %>
+      <div class="content_post">
+        <!-- 商品画像を表示 -->
+        <div class="item-img-content" style="position: relative;">
+          <%= image_tag item.image, class: "item-img" %>
+
+          <!-- 売却済みなら「sold out」を表示 -->
+         
+        </div>
+
+        <!-- 商品名を表示 -->
+        <h3 class="item-name">
+          <%= item.item_name %>
+        </h3>
+
+        <!-- 価格を表示 -->
+        <div class="item-price">
+          <span><%= item.price %>円</span>
+        </div>
+
+        <!-- 配送料負担を表示 -->
+        <div class="item-shipping">
+          <span><%= item.shipping_fee.name %></span>
+        </div>
+      </div>
+    <% end %>
+  <% else %>  <!-- 商品がない場合 -->
+    <div class="content_post">
+      <!-- ダミーの商品画像を表示 -->
+      <div class="item-img-content">
+        <%= image_tag "https://example.com/dummy-image.png", class: "item-img" %>  <!-- ダミー画像URL -->
+      </div>
+
+      <!-- ダミーの商品名を表示 -->
+      <h3 class="item-name">
+        ダミー商品
+      </h3>
+
+      <!-- ダミーの価格を表示 -->
+      <div class="item-price">
+        <span>999円</span>
+      </div>
+
+      <!-- ダミーの配送料負担を表示 -->
+      <div class="item-shipping">
+        <span>送料込み</span>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 </div>
 <%= link_to(new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>

@@ -4,7 +4,6 @@ const price = () => {
   if (priceInput) {  // priceInputが存在する場合のみ、イベントを追加
     priceInput.addEventListener("input", () => {
       const inputValue = priceInput.value;
-      console.log(inputValue);
       
       // 販売手数料（例: 10%）
       const tax = Math.floor(inputValue * 0.1);
