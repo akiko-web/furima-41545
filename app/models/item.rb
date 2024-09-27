@@ -25,4 +25,5 @@ class Item < ApplicationRecord
   validates :region_id,       presence: true, numericality: { other_than: 0, message: "を選択してください" }
   validates :shipping_fee_id, presence: true, numericality: { other_than: 0, message: "を選択してください" }
   validates :condition_id,    presence: true, numericality: { other_than: 0, message: "を選択してください" }
+
 end
