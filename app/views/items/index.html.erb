@@ -132,7 +132,7 @@
   <% if @items.any? %>  <!-- 商品がある場合 -->
     <% @items.each do |item| %>
         <li class='list'>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item.id) do %>
           <div class='item-img-content'>
         <!-- 商品画像を表示 -->
           <%= image_tag item.image, class: "item-img" %>
