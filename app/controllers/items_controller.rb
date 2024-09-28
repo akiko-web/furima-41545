@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:edit, :update]
 
   def new
     @item = Item.new
@@ -22,10 +23,30 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
   
+  def edit
+    @item = Item.find(params[:id])
+    if @item.user != current_user
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to @item, notice: '商品情報が更新されました。'
+    else
+      render :edit
+    end
+  end
+  
   private
 
   def item_params
     # :image を許可することで、画像も一緒に保存できるようにします
-    params.require(:item).permit(:item_name, :description, :category_id, :condition_id, :shipping_fee_id, :region_id, :delivery_time_id, :price, :image).merge(user_id: current_user.id) # 他の属性も含めて許可
+    params.require(:item).permit(:item_name, :description, :category_id, :condition_id, :shipping_fee_id, :region_id, :delivery_time_id, :price, :image).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
