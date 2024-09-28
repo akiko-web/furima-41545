@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:edit, :update, :show]
 
   def new
@@ -36,7 +36,18 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
+  def destroy
+
+    if @item.user == current_user
+      @item.destroy
+      redirect_to root_path, notice: '商品が削除されました。'
+    else
+      redirect_to root_path, alert: '削除できません。'
+    end
+  end
+
+
   private
 
   def item_params
