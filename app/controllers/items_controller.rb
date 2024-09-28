@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:edit, :update]
+  before_action :set_item, only: [:edit, :update, :show]
 
   def new
     @item = Item.new
@@ -20,20 +20,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
   
   def edit
-    @item = Item.find(params[:id])
     if @item.user != current_user
       redirect_to root_path
     end
   end
 
   def update
-    @item = Item.find(params[:id])
+
     if @item.update(item_params)
-      redirect_to @item, notice: '商品情報が更新されました。'
+      redirect_to @item  # 更新後はその商品ページにリダイレクト
     else
       render :edit
     end
