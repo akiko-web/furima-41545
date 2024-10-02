@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
+    if @item.user == current_user || @item.item_record.present?
+      redirect_to root_path
+    end
     @example_form = ExampleForm.new
   end
 
