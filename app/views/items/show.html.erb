@@ -26,8 +26,7 @@
     </div>
 
     <%# 商品が売却済みの場合はボタンを表示しない %>
-<% unless @item.item_record.present? %> 
-  <% if user_signed_in? %> <!-- ログインしている場合 -->
+  <% if user_signed_in? && @item.item_record.nil? %> <!-- ログインしている場合 -->
     <% if @item.user == current_user %> <!-- ログインユーザーが出品者の場合 -->
       <%= link_to '商品の編集', edit_item_path(@item), method: :get, class: "item-red-btn" %>
       <%= link_to '削除', item_path(@item), method: :delete, data: { confirm: '本当に削除しますか？' } , class:"item-destroy" %>
@@ -35,7 +34,7 @@
       <%= link_to '購入画面に進む', item_orders_path(@item), data: { turbo: false }, class: "item-red-btn" %>
     <% end %>
   <% end %>
-<% end %> <!-- 売却済み商品の場合はボタンを非表示にする -->
+<!-- 売却済み商品の場合はボタンを非表示にする -->
 
     <div class="item-explain-box">
       <span><%= @item.description %></span>
