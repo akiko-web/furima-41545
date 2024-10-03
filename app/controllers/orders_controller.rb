@@ -4,14 +4,13 @@ class OrdersController < ApplicationController
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
-    @order = Order.new
-  end
-
-  def index
+    
     if @item.user == current_user || @item.item_record.present?
       redirect_to root_path
+    else
+      @order = Order.new  # 注文用のインスタンスを作成
+      @example_form = ExampleForm.new  # フォーム用のインスタンスを作成
     end
-    @example_form = ExampleForm.new
   end
 
   def create
