@@ -138,10 +138,11 @@
           <%= image_tag item.image, class: "item-img" %>
 
           <!-- 売却済みなら「sold out」を表示 -->
-          
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
-          </div>
+        <% if item.item_record.present? %>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
+       <% end %>
 
 </div>
         <div class='item-info'>

@@ -17,4 +17,5 @@ validates :first_name, :last_name, format: {with: /\A[ぁ-んァ-ヶ一-龥々�
  # カタカナのみ許可する
     validates :first_name_kana, :last_name_kana, format: {with: /\A[ァ-ヶー]+\z/, message: "is invalid. Input full-width katakana characters."}
     has_many :items
+    has_many :item_records
   end
