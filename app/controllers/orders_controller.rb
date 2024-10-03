@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
     if @item.user == current_user || @item.item_record.present?
       redirect_to root_path
     else
-      @order = Order.new  # 注文用のインスタンスを作成
       @example_form = ExampleForm.new  # フォーム用のインスタンスを作成
     end
   end
