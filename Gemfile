@@ -87,6 +87,7 @@ gem 'active_hash'
 gem 'payjp'
 
 group :production do
+ gem 'unicorn', '6.1.0'
   gem 'pg'
 end
 
